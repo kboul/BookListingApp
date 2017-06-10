@@ -7,7 +7,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp">
 
         <ImageView
             android:id="@+id/image"
@@ -22,7 +25,9 @@
             android:layout_gravity="center"
             android:layout_toRightOf="@+id/image"
             android:orientation="vertical"
-            android:paddingLeft="16dp">
+            android:paddingLeft="16dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
 
             <TextView
                 android:id="@+id/title"
@@ -33,6 +38,7 @@
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
+                android:textSize="20sp"
                 tools:text="Title" />
 
             <TextView
@@ -43,7 +49,30 @@
                 android:gravity="top"
                 android:textAppearance="?android:textAppearanceMedium"
                 android:textColor="@android:color/black"
+                android:textSize="18sp"
                 tools:text="Author" />
+
+            <TextView
+                android:id="@+id/publisher"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="Publisher" />
+
+            <TextView
+                android:id="@+id/published_date"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="Published Date" />
         </LinearLayout>
 
     </LinearLayout>

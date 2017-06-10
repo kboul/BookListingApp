@@ -1,12 +1,15 @@
 package com.example.android.booklistingapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -28,17 +31,25 @@ public class BookAdapter extends ArrayAdapter<Book> {
         // Get the {@link AndroidFlavor} object located at this position in the list
         Book currentBook = getItem(position);
 
-        // Find the TextView in the list_item.xml layout with the ID magnitude
+        // Find the TextView in the book_list_item.xml layout with the ID image
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
-        //imageView.setImageResource(currentBook.getImage());
+        //Picasso.with(context).load(currentBook.getImage()).into(imageView);
 
-        // Find the TextView in the list_item.xml layout with the ID location
+        // Find the TextView in the book_list_item.xml layout with the ID title
         TextView titleView = (TextView) listItemView.findViewById(R.id.title);
         titleView.setText(currentBook.getTitle());
 
-        // Find the TextView in the list_item.xml layout with the ID date
+        // Find the TextView in the book_list_item.xml layout with the ID author
         TextView authorView = (TextView) listItemView.findViewById(R.id.author);
         authorView.setText(currentBook.getAuthor());
+
+        // Find the TextView in the book_list_item.xml layout with the ID publisher
+        TextView publisherView = (TextView) listItemView.findViewById(R.id.publisher);
+        publisherView.setText(currentBook.getPublisher());
+
+        // Find the TextView in the book_list_item.xml layout with the ID published date
+        TextView publishedDateView = (TextView) listItemView.findViewById(R.id.published_date);
+        publishedDateView.setText(currentBook.getPublishedDate());
 
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView

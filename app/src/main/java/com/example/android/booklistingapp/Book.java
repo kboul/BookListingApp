@@ -9,17 +9,23 @@ public class Book {
     private String image;
     private String title;
     private String author;
+    private String publisher;
+    private String publishedDate;
 
     // Constructor
-    public Book(String image, String title, String author) {
+    public Book(String image, String title, String author, String publisher, String publishedDate) {
         this.title = title;
         this.author = author;
         this.image = image;
+        this.publisher = publisher;
+        this.publishedDate = publishedDate;
     }
 
-    public Book(String title, String author) {
+    public Book(String title, String author, String publisher, String publishedDate) {
         this.title = title;
         this.author = author;
+        this.publisher = publisher;
+        this.publishedDate = publishedDate;
     }
 
     public String getImage() {
@@ -33,4 +39,8 @@ public class Book {
     public String getTitle() {
         return title;
     }
+
+    public String getPublisher() { return publisher; }
+
+    public String getPublishedDate() { return publishedDate; }
 }
