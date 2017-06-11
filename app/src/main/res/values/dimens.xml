@@ -2,4 +2,22 @@
 <resources>
     <!-- Height of each list item -->
     <dimen name="list_item_height">120dp</dimen>
+
+    <dimen name="search_field_padding_top">15dp</dimen>
+
+    <dimen name="list_view_margin_top">50dp</dimen>
+
+    <dimen name="main_linear_layout_padding_left_right">10dp</dimen>
+
+    <dimen name="book_image_margin_top">10dp</dimen>
+
+    <dimen name="book_info_linear_layout_padding_bootom">10dp</dimen>
+    <dimen name="book_info_linear_layout_padding_left">16dp</dimen>
+    <dimen name="book_info_linear_layout_padding_top">10dp</dimen>
+
+    <dimen name="book_title_text_size">20sp</dimen>
+
+    <dimen name="book_author_text_size">18sp</dimen>
+
+    <dimen name="book_publisher_date_pages_text_size">16sp</dimen>
 </resources>

@@ -38,7 +38,6 @@ public class BookActivity extends AppCompatActivity {
     /**
      * TextView that is displayed when the list is empty
      */
-    //private TextView emptyStateView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

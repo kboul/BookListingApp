@@ -166,7 +166,7 @@ public final class QueryUtils {
 
                 // get the authors array
                 JSONArray authorsArray = volumeInfoObject.getJSONArray("authors");
-                //Log.i(LOG_TAG, "" + authorsArray.length());
+                Log.i(LOG_TAG, "" + authorsArray);
 
                 // get the authors as a concatenated string
                 String authors = returnAuthors(authorsArray);

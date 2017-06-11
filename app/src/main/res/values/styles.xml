@@ -8,4 +8,94 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SearchIconImage">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/searchIconImageBackground</item>
+        <item name="android:src">@mipmap/ic_search_black_48dp</item>
+    </style>
+
+    <style name="SearchField">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_toEndOf">@+id/search_icon</item>
+        <item name="android:layout_toRightOf">@+id/search_icon</item>
+        <item name="android:cursorVisible">false</item>
+        <item name="android:hint">@string/searchFieldHint</item>
+        <item name="android:inputType">text</item>
+        <item name="android:paddingTop">@dimen/search_field_padding_top</item>
+    </style>
+
+    <style name="ListView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginTop">@dimen/list_view_margin_top</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="EmptyView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+    </style>
+
+    <style name="MainLinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingLeft">@dimen/main_linear_layout_padding_left_right</item>
+        <item name="android:paddingRight">@dimen/main_linear_layout_padding_left_right</item>
+    </style>
+
+    <style name="BookImage">
+        <item name="android:layout_width">@dimen/list_item_height</item>
+        <item name="android:layout_height">@dimen/list_item_height</item>
+        <item name="android:layout_marginTop">@dimen/book_image_margin_top</item>
+        <item name="android:src">@mipmap/ic_launcher</item>
+    </style>
+
+    <style name="BookInfoLinearLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_toRightOf">@+id/image</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingBottom">@dimen/book_info_linear_layout_padding_bootom</item>
+        <item name="android:paddingLeft">@dimen/book_info_linear_layout_padding_left</item>
+        <item name="android:paddingTop">@dimen/book_info_linear_layout_padding_top</item>
+    </style>
+
+    <style name="BookTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">bottom</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/book_title_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="BookAuthor">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">top</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/book_author_text_size</item>
+    </style>
+
+    <style name="BookPublisherDatePages">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">top</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">@dimen/book_publisher_date_pages_text_size</item>
+    </style>
+
+
 </resources>
