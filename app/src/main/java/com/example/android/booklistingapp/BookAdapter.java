@@ -51,6 +51,10 @@ public class BookAdapter extends ArrayAdapter<Book> {
         TextView publishedDateView = (TextView) listItemView.findViewById(R.id.published_date);
         publishedDateView.setText(currentBook.getPublishedDate());
 
+        // Find the TextView in the book_list_item.xml layout with the ID page count
+        TextView pageCountView = (TextView) listItemView.findViewById(R.id.page_count);
+        pageCountView.setText(currentBook.getPageCount());
+
         // Return the whole list item layout (containing 2 TextViews and an ImageView)
         // so that it can be shown in the ListView
         return listItemView;

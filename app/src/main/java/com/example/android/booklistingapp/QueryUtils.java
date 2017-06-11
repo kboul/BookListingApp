@@ -1,5 +1,6 @@
 package com.example.android.booklistingapp;
 
+import android.app.Activity;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -20,13 +21,16 @@ import java.util.List;
 
 import com.squareup.picasso.Picasso;
 
-
 import static android.content.ContentValues.TAG;
 
 public final class QueryUtils {
 
-    /** Tag for the log messages */
+    /**
+     * Tag for the log messages
+     */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
+
+    BookActivity context;
 
     /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.
@@ -97,8 +101,7 @@ public final class QueryUtils {
             if (urlConnection.getResponseCode() == HttpURLConnection.HTTP_OK) { //HTTP_OK = 200
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
-            }
-            else {
+            } else {
                 Log.e(LOG_TAG, "Error Response Status: " + urlConnection.getResponseCode());
             }
         } catch (IOException e) {
@@ -167,7 +170,7 @@ public final class QueryUtils {
 
                 // get the authors array
                 JSONArray authorsArray = volumeInfoObject.getJSONArray("authors");
-                Log.i(LOG_TAG, "" + authorsArray.length());
+                //Log.i(LOG_TAG, "" + authorsArray.length());
 
                 // get the authors as a concatenated string
                 String authors = returnAuthors(authorsArray);
@@ -179,7 +182,10 @@ public final class QueryUtils {
                 // get the published date string
                 String publishedDate = volumeInfoObject.getString("publishedDate");
 
-                Book book = new Book(title, authors, publisher, publishedDate);
+                // get the page count string
+                String pageCount = returnPageCount(volumeInfoObject);
+
+                Book book = new Book(title, authors, publisher, publishedDate, pageCount);
                 books.add(book);
             }
 
@@ -187,22 +193,33 @@ public final class QueryUtils {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the book JSON results", e);
         }
 
         // Return the list of earthquakes
         return books;
     }
 
-
+    // Checks the items of the authors array and returns a single author or multiple
     private static String returnAuthors(JSONArray authorsArray) throws JSONException {
         String authors = "";
         for (int i = 0; i < authorsArray.length(); i++) {
             authors = authorsArray.getString(0);
             if (authorsArray.length() > 1) {
-                authors += ", " + authorsArray.getString(i) ;
+                authors += ", " + authorsArray.getString(i);
             }
         }
         return authors;
+    }
+
+    // Checks whether pageCount exists and returns it
+    private static String returnPageCount(JSONObject object) throws JSONException {
+        String pageCount;
+        if (object.has("pageCount")) {
+            pageCount = object.getString("pageCount");
+        } else {
+            pageCount = "";
+        }
+        return pageCount;
     }
 }

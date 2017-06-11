@@ -73,6 +73,17 @@
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 tools:text="Published Date" />
+
+            <TextView
+                android:id="@+id/page_count"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:textAppearance="?android:textAppearanceMedium"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                tools:text="Page Count" />
         </LinearLayout>
 
     </LinearLayout>
