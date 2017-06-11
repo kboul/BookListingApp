@@ -3,6 +3,11 @@ package com.example.android.booklistingapp;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -17,20 +22,31 @@ public class BookActivity extends AppCompatActivity {
      * URL for book data from the Google Book API
      */
     private static final String BOOKS_URL =
-            "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=10";
+            "https://www.googleapis.com/books/v1/volumes?q=";
 
     /**
      * Adapter for the list of books
      */
     private BookAdapter bookAdapter;
 
-    /** TextView that is displayed when the list is empty */
-    //private TextView emptyStateView;
+    private EditText searchField;
+    private ImageView searchIcon;
 
+    /**
+     * TextView that is displayed when the list is empty
+     */
+    //private TextView emptyStateView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
+
+        ImageView searchIcon = (ImageView) findViewById(R.id.search_icon);
+        // Set background color image to transparent
+        searchIcon.setBackgroundColor(0);
+
+        // Find a reference to the search field
+        searchField = (EditText) findViewById(R.id.search_field);
 
         // Find a reference to the {@link ListView} in the layout
         ListView bookListView = (ListView) findViewById(R.id.list);
@@ -43,12 +59,17 @@ public class BookActivity extends AppCompatActivity {
         bookListView.setAdapter(bookAdapter);
 
         // Hook up the TextView as the empty view of the ListView
-        //emptyStateView = (TextView) findViewById(R.id.empty_view);
-        //bookListView.setEmptyView(emptyStateView);
+//        emptyStateView = (TextView) findViewById(R.id.empty_view);
+//        bookListView.setEmptyView(emptyStateView);
 
-        // Start the AsyncTask to fetch the book data
-        BookAsyncTask task = new BookAsyncTask();
-        task.execute(BOOKS_URL);
+        // Set an onclicklistener to the search icon image based on the user input
+        searchIcon.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Start the AsyncTask to fetch the book data
+                BookAsyncTask task = new BookAsyncTask();
+                task.execute(formatUrl(BOOKS_URL));
+            }
+        });
     }
 
     private class BookAsyncTask extends AsyncTask<String, Void, List<Book>> {
@@ -67,6 +88,7 @@ public class BookActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(List<Book> data) {
+
             // Clear the adapter of previous book data
             bookAdapter.clear();
 
@@ -76,5 +98,17 @@ public class BookActivity extends AppCompatActivity {
                 bookAdapter.addAll(data);
             }
         }
+    }
+
+    // Get the user input from edit text view
+    private String getSearchFieldInput() {
+        return searchField.getText().toString().trim();
+    }
+
+    // Format the url adding the user input to the request
+    private String formatUrl(String url) {
+        url = url + getSearchFieldInput() + "&maxResults=10";
+        Log.v(LOG_TAG, url);
+        return url;
     }
 }
