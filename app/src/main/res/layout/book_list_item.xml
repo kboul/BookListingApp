@@ -17,28 +17,27 @@
             <TextView
                 android:id="@+id/title"
                 style="@style/BookTitle"
-                tools:text="Title" />
+                tools:text="@string/book_sample_title" />
 
             <TextView
                 android:id="@+id/author"
                 style="@style/BookAuthor"
-                tools:text="Author" />
+                tools:text="@string/book_sample_author_title" />
 
             <TextView
                 android:id="@+id/publisher"
                 style="@style/BookPublisherDatePages"
-                tools:text="Publisher" />
+                tools:text="@string/book_sample_publisher_title" />
 
             <TextView
                 android:id="@+id/published_date"
                 style="@style/BookPublisherDatePages"
-
-                tools:text="Published Date" />
+                tools:text="@string/book_sample_published_date" />
 
             <TextView
                 android:id="@+id/page_count"
                 style="@style/BookPublisherDatePages"
-                tools:text="Page Count" />
+                tools:text="@string/book_sample_pages" />
         </LinearLayout>
 
     </LinearLayout>

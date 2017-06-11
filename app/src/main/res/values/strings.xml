@@ -8,4 +8,14 @@
     <string name="no_internet_connection">No internet connection.</string>
 
     <string name="searchFieldHint">Search book...</string>
+
+    <string name="book_sample_title">Title</string>
+
+    <string name="book_sample_author_title">Author</string>
+
+    <string name="book_sample_publisher_title">Publisher</string>
+
+    <string name="book_sample_published_date">Published Date</string>
+
+    <string name="book_sample_pages">Pages</string>
 </resources>
