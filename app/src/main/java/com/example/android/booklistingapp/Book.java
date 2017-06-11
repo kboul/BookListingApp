@@ -31,9 +31,7 @@ public class Book {
         this.pageCount = pageCount;
     }
 
-    public String getImage() {
-        return image;
-    }
+    public String getImage() { return image; }
 
     public String getAuthor() { return author; }
 

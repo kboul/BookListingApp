@@ -32,7 +32,7 @@ public class BookAdapter extends ArrayAdapter<Book> {
 
         // Find the ImageView in the book_list_item.xml layout with the ID image
         ImageView imageView = (ImageView) listItemView.findViewById(R.id.image);
-        // Loading an Image from a Url
+        // Loading an Image from a Url using Picasso library
         Picasso.with(getContext()).load(currentBook.getImage()).into(imageView);
 
         // Find the TextView in the book_list_item.xml layout with the ID title

@@ -48,10 +48,10 @@ public final class QueryUtils {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
-        // Extract relevant fields from the JSON response and create a list of {@link Earthquake}s
+        // Extract relevant fields from the JSON response and create a list of {@link Book}s
         List<Book> books = extractFeatureFromJSON(jsonResponse);
 
-        // Return the list of {@link Earthquake}s
+        // Return the list of {@link Book}s
         return books;
     }
 
@@ -99,7 +99,7 @@ public final class QueryUtils {
             }
         } catch (IOException e) {
             // TODO: Handle the exception
-            Log.e(LOG_TAG, "Problem retrieving the earthquake JSON results", e);
+            Log.e(LOG_TAG, "Problem retrieving the book JSON results", e);
         } finally {
             if (urlConnection != null) {
                 urlConnection.disconnect();
@@ -135,6 +135,9 @@ public final class QueryUtils {
      * parsing a JSON response.
      */
     public static ArrayList<Book> extractFeatureFromJSON(String BookJSON) {
+        String publisherIndicator = "Publisher: ";
+        String publishedDateIndicator = "Published Date: ";
+        String pagesIndicator = "Pages: ";
 
         // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty(BookJSON)) {
@@ -169,14 +172,14 @@ public final class QueryUtils {
                 String authors = returnAuthors(authorsArray);
 
                 // get the publisher string
-                String publisher = checkIfJsonElementExists(volumeInfoObject, "publisher");
+                String publisher = publisherIndicator + checkIfJsonElementExists(volumeInfoObject, "publisher");
                 //Log.i(LOG_TAG, "" + publisher);
 
                 // get the published date string
-                String publishedDate = checkIfJsonElementExists(volumeInfoObject, "publishedDate");
+                String publishedDate = publishedDateIndicator + checkIfJsonElementExists(volumeInfoObject, "publishedDate");
 
                 // get the page count string
-                String pageCount = checkIfJsonElementExists(volumeInfoObject,"pageCount");
+                String pageCount = pagesIndicator + checkIfJsonElementExists(volumeInfoObject, "pageCount");
 
                 Book book = new Book(image, title, authors, publisher, publishedDate, pageCount);
                 books.add(book);
