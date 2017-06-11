@@ -2,5 +2,5 @@
     <string name="app_name">BookListingApp</string>
 
     !-- Text to display in the list when there are no books [CHAR LIMIT=NONE] -->
-    <string name="no_earthquakes">No books found.</string>
+    <string name="no_books">No books found. \nPlease repeat the query\nwith another keyword.</string>
 </resources>
