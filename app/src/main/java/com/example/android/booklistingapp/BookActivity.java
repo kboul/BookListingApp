@@ -1,5 +1,8 @@
 package com.example.android.booklistingapp;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -62,12 +65,25 @@ public class BookActivity extends AppCompatActivity {
         emptyStateView = (TextView) findViewById(R.id.empty_view);
         bookListView.setEmptyView(emptyStateView);
 
+        // Get a reference to the ConnectivityManager to check state of network connectivity
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        // Get details on the currently active default data network
+        final NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+
         // Set an onclicklistener to the search icon image based on the user input
         searchIcon.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Start the AsyncTask to fetch the book data
-                BookAsyncTask task = new BookAsyncTask();
-                task.execute(formatUrl(BOOKS_URL));
+                if (activeNetwork != null && activeNetwork.isConnectedOrConnecting()) {
+                    // Start the AsyncTask to fetch the book data
+                    BookAsyncTask task = new BookAsyncTask();
+                    task.execute(formatUrl(BOOKS_URL));
+                } else {
+                    // Update empty state with no connection error message
+                    emptyStateView.setText(R.string.no_internet_connection);
+                }
             }
         });
     }
