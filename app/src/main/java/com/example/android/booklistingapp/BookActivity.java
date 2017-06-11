@@ -8,8 +8,6 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.R.attr.data;
-
 public class BookActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = BookActivity.class.getName();

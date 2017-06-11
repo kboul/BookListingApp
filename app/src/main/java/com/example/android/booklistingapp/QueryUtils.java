@@ -1,6 +1,5 @@
 package com.example.android.booklistingapp;
 
-import android.app.Activity;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -19,18 +18,12 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.squareup.picasso.Picasso;
-
-import static android.content.ContentValues.TAG;
-
 public final class QueryUtils {
 
     /**
      * Tag for the log messages
      */
     private static final String LOG_TAG = QueryUtils.class.getSimpleName();
-
-    BookActivity context;
 
     /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.
@@ -162,11 +155,11 @@ public final class QueryUtils {
                 JSONObject volumeInfoObject = bookObject.getJSONObject("volumeInfo");
 
                 // get the image url
-                //JSONObject imageLinks = bookObject.getJSONObject("imageLinks");
-                //String image = imageLinks.getString("smallThumbnail");
+                JSONObject imageLinks = volumeInfoObject.getJSONObject("imageLinks");
+                String image = checkIfJsonElementExists(imageLinks, "smallThumbnail");
 
                 // get the title of the book
-                String title = volumeInfoObject.getString("title");
+                String title = checkIfJsonElementExists(volumeInfoObject, "title");
 
                 // get the authors array
                 JSONArray authorsArray = volumeInfoObject.getJSONArray("authors");
@@ -176,16 +169,16 @@ public final class QueryUtils {
                 String authors = returnAuthors(authorsArray);
 
                 // get the publisher string
-                String publisher = volumeInfoObject.getString("publisher");
+                String publisher = checkIfJsonElementExists(volumeInfoObject, "publisher");
                 //Log.i(LOG_TAG, "" + publisher);
 
                 // get the published date string
-                String publishedDate = volumeInfoObject.getString("publishedDate");
+                String publishedDate = checkIfJsonElementExists(volumeInfoObject, "publishedDate");
 
                 // get the page count string
-                String pageCount = returnPageCount(volumeInfoObject);
+                String pageCount = checkIfJsonElementExists(volumeInfoObject,"pageCount");
 
-                Book book = new Book(title, authors, publisher, publishedDate, pageCount);
+                Book book = new Book(image, title, authors, publisher, publishedDate, pageCount);
                 books.add(book);
             }
 
@@ -196,7 +189,7 @@ public final class QueryUtils {
             Log.e("QueryUtils", "Problem parsing the book JSON results", e);
         }
 
-        // Return the list of earthquakes
+        // Return the list of books
         return books;
     }
 
@@ -212,14 +205,14 @@ public final class QueryUtils {
         return authors;
     }
 
-    // Checks whether pageCount exists and returns it
-    private static String returnPageCount(JSONObject object) throws JSONException {
-        String pageCount;
-        if (object.has("pageCount")) {
-            pageCount = object.getString("pageCount");
+    // Checks whether a specified parameter exists and returns it otherwise returns -
+    private static String checkIfJsonElementExists(JSONObject object, String jsonElement) throws JSONException {
+        String element;
+        if (object.has(jsonElement)) {
+            element = object.getString(jsonElement);
         } else {
-            pageCount = "";
+            element = "-";
         }
-        return pageCount;
+        return element;
     }
 }
