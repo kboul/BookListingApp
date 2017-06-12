@@ -2,6 +2,7 @@ package com.example.android.booklistingapp;
 
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.TextView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -149,42 +150,47 @@ public final class QueryUtils {
         try {
             JSONObject jsonObj = new JSONObject(BookJSON);
 
-            // Getting JSON Array node
-            JSONArray itemsArray = jsonObj.getJSONArray("items");
+            // Check if json object has items object
+            if (jsonObj.has("items")) {
+                // Getting JSON Array node
+                JSONArray itemsArray = jsonObj.getJSONArray("items");
+                // looping through All features
+                for (int i = 0; i < itemsArray.length(); i++) {
+                    JSONObject bookObject = itemsArray.getJSONObject(i);
+                    JSONObject volumeInfoObject = bookObject.getJSONObject("volumeInfo");
 
-            // looping through All features
-            for (int i = 0; i < itemsArray.length(); i++) {
-                JSONObject bookObject = itemsArray.getJSONObject(i);
-                JSONObject volumeInfoObject = bookObject.getJSONObject("volumeInfo");
+                    // get the image url
+                    JSONObject imageLinks = volumeInfoObject.getJSONObject("imageLinks");
+                    String image = checkIfJsonElementExists(imageLinks, "smallThumbnail");
 
-                // get the image url
-                JSONObject imageLinks = volumeInfoObject.getJSONObject("imageLinks");
-                String image = checkIfJsonElementExists(imageLinks, "smallThumbnail");
+                    // get the title of the book
+                    String title = checkIfJsonElementExists(volumeInfoObject, "title");
 
-                // get the title of the book
-                String title = checkIfJsonElementExists(volumeInfoObject, "title");
+                    // get the authors of the book
+                    String authors = "";
+                    // check if the authors object exists 
+                    if (volumeInfoObject.has("authors")) {
+                        // get the authors array
+                        JSONArray authorsArray = volumeInfoObject.getJSONArray("authors");
+                        authors = returnAuthors(authorsArray);
+                    } else {
+                        authors = "-";
+                    }
 
-                // get the authors array
-                JSONArray authorsArray = volumeInfoObject.getJSONArray("authors");
-                Log.i(LOG_TAG, "" + authorsArray);
+                    // get the publisher string
+                    String publisher = publisherIndicator + checkIfJsonElementExists(volumeInfoObject, "publisher");
+                    //Log.i(LOG_TAG, "" + publisher);
 
-                // get the authors as a concatenated string
-                String authors = returnAuthors(authorsArray);
+                    // get the published date string
+                    String publishedDate = publishedDateIndicator + checkIfJsonElementExists(volumeInfoObject, "publishedDate");
 
-                // get the publisher string
-                String publisher = publisherIndicator + checkIfJsonElementExists(volumeInfoObject, "publisher");
-                //Log.i(LOG_TAG, "" + publisher);
+                    // get the page count string
+                    String pageCount = pagesIndicator + checkIfJsonElementExists(volumeInfoObject, "pageCount");
 
-                // get the published date string
-                String publishedDate = publishedDateIndicator + checkIfJsonElementExists(volumeInfoObject, "publishedDate");
-
-                // get the page count string
-                String pageCount = pagesIndicator + checkIfJsonElementExists(volumeInfoObject, "pageCount");
-
-                Book book = new Book(image, title, authors, publisher, publishedDate, pageCount);
-                books.add(book);
+                    Book book = new Book(image, title, authors, publisher, publishedDate, pageCount);
+                    books.add(book);
+                }
             }
-
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
@@ -197,22 +203,22 @@ public final class QueryUtils {
     }
 
     // Checks the items of the authors array and returns a single author or multiple
-    private static String returnAuthors(JSONArray authorsArray) throws JSONException {
+    private static String returnAuthors(JSONArray jsonArray) throws JSONException {
         String authors = "";
-        for (int i = 0; i < authorsArray.length(); i++) {
-            authors = authorsArray.getString(0);
-            if (authorsArray.length() > 1) {
-                authors += ", " + authorsArray.getString(i);
+        for (int i = 0; i < jsonArray.length(); i++) {
+            authors = jsonArray.getString(0);
+            if (jsonArray.length() > 1) {
+                authors += ", " + jsonArray.getString(i);
             }
         }
         return authors;
     }
 
     // Checks whether a specified parameter exists and returns it otherwise returns -
-    private static String checkIfJsonElementExists(JSONObject object, String jsonElement) throws JSONException {
+    private static String checkIfJsonElementExists(JSONObject jsonObject, String jsonElement) throws JSONException {
         String element;
-        if (object.has(jsonElement)) {
-            element = object.getString(jsonElement);
+        if (jsonObject.has(jsonElement)) {
+            element = jsonObject.getString(jsonElement);
         } else {
             element = "-";
         }
