@@ -3,6 +3,8 @@
     <!-- Height of each list item -->
     <dimen name="list_item_height">120dp</dimen>
 
+    <dimen name="search_icon_image_margin_top">20dp</dimen>
+
     <dimen name="search_field_padding_top">15dp</dimen>
 
     <dimen name="list_view_margin_top">50dp</dimen>

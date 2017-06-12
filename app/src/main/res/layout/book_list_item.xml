@@ -8,8 +8,7 @@
 
         <ImageView
             android:id="@+id/image"
-            style="@style/BookImage"
-            android:layout_marginTop="20dp"/>
+            style="@style/BookImage" />
 
         <LinearLayout
             android:id="@+id/text_container"
