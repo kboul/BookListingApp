@@ -81,6 +81,7 @@ public class BookActivity extends AppCompatActivity {
                 } else {
                     // Update empty state with no connection error message
                     emptyStateView.setText(R.string.no_internet_connection);
+                    bookAdapter.clear();
                 }
             }
         });
