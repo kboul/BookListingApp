@@ -61,9 +61,9 @@
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_toRightOf">@+id/image</item>
         <item name="android:orientation">vertical</item>
-        <item name="android:paddingBottom">@dimen/book_info_linear_layout_padding_bootom</item>
+        <item name="android:layout_marginBottom">@dimen/book_info_linear_layout_margin_bottom</item>
         <item name="android:paddingLeft">@dimen/book_info_linear_layout_padding_left</item>
-        <item name="android:paddingTop">@dimen/book_info_linear_layout_padding_top</item>
+        <item name="android:layout_marginTop">@dimen/book_info_linear_layout_margin_top</item>
     </style>
 
     <style name="BookTitle">

@@ -168,7 +168,7 @@ public final class QueryUtils {
 
                     // get the authors of the book
                     String authors = "";
-                    // check if the authors object exists 
+                    // check if the authors object exists
                     if (volumeInfoObject.has("authors")) {
                         // get the authors array
                         JSONArray authorsArray = volumeInfoObject.getJSONArray("authors");
