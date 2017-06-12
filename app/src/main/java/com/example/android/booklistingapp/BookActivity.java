@@ -64,17 +64,16 @@ public class BookActivity extends AppCompatActivity {
         emptyStateView = (TextView) findViewById(R.id.empty_view);
         bookListView.setEmptyView(emptyStateView);
 
-        // Get a reference to the ConnectivityManager to check state of network connectivity
-        ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        // Get details on the currently active default data network
-        final NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-
-
         // Set an onclicklistener to the search icon image based on the user input
         searchIcon.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                // Get a reference to the ConnectivityManager to check state of network connectivity
+                ConnectivityManager cm =
+                        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                // Get details on the currently active default data network
+                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
                 if (activeNetwork != null && activeNetwork.isConnectedOrConnecting()) {
                     // Start the AsyncTask to fetch the book data
                     BookAsyncTask task = new BookAsyncTask();
