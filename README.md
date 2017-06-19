@@ -32,3 +32,8 @@ Then, you'll want to build the AsyncTask that queries the API. This is a complex
 Once you've queried the API, you'll need to parse the result. This will involve storing the information returned by the API in a custom class.
 
 Finally, you'll use the List and Adapter pattern to populate a list on the user's screen with the information stored in the custom objects you wrote earlier.
+
+<img src="https://user-images.githubusercontent.com/14216599/27298297-ba3f769e-5530-11e7-9758-47b45bc89aa8.png" width="300"/>
+
+
+
