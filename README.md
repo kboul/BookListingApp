@@ -33,7 +33,10 @@ Once you've queried the API, you'll need to parse the result. This will involve 
 
 Finally, you'll use the List and Adapter pattern to populate a list on the user's screen with the information stored in the custom objects you wrote earlier.
 
-<img src="https://user-images.githubusercontent.com/14216599/27298297-ba3f769e-5530-11e7-9758-47b45bc89aa8.png" width="300"/>
+<img src="https://user-images.githubusercontent.com/14216599/27298297-ba3f769e-5530-11e7-9758-47b45bc89aa8.png" width="250" hspace="20"/> <img src="https://user-images.githubusercontent.com/14216599/27450326-0df10388-5794-11e7-9379-ba7b7e8a789c.png" width="250"/> 
+
+<img src="https://user-images.githubusercontent.com/14216599/27450347-22b9a3d8-5794-11e7-862e-53e5bc852643.png" width="250" hspace="20"/> <img src="https://user-images.githubusercontent.com/14216599/27450447-689ba2a2-5794-11e7-9478-f5a465709ba2.png" width="250"/>
+
 
 
 
